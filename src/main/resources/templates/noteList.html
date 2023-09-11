@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Note</title>
+    <style>
+   .b1 {
+    background: green;
+    color: white;
+    font-size: 15pt;
+   }
+   .b2 {
+    background: red;
+    color: white;
+    font-size: 15pt;
+   }
+   .b3{
+    color: black;
+    font-size: 20pt;
+    }
+    .b4 {
+    background: blue;
+    color: white;
+    font-size: 15pt;
+   }
+
+
+  </style>
+</head>
+<body>
+<form th:action="@{/create}" method="post" th:object="${note}">
+<!--    <label>Title: <input type="text" th:="*{note.title}"/></label><br>-->
+<!--    <label>Content: <input type="text" th:field="*{content}"/></label><br>-->
+<!--    <button type="submit">Create Note</button>-->
+<!--</form>-->
+
+<!--<form method="post" action="/create" enctype="multipart/form-data">-->
+<!--    <form method="post" th:action="{@/note/create}"  th:object="${note}" enctype="multipart/form-data">-->
+<!--    Title <br>-->
+<!--    <input type="text" class="b3"/><br>-->
+<!--    Content<br>-->
+<!--    <input type="text" class="b3"/><br>-->
+    <a href="/note/create" class="b1">Add note</a>
+<!--    <a href="/note/list" class="b2">Cansel</a>-->
+</form>
+<h1> Note List</h1>
+<table style= "width:100%">
+    <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Actions</th>
+    </tr>
+            <tr th:each="note:${note}">
+            <td  th:text="${note.title}"></td>
+            <td th:text ="${note.content}"></td>
+                <td><a th:href="@{'/note/edit?id=' + ${note.id}}">Edit</a></td>
+                <td><a th:href="@{'/note/delete?id=' + ${note.id}}">delete</a></td>
+</table>
+</body>
+</html>
