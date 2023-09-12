@@ -5,7 +5,8 @@
 </head>
 <body>
 <h2> Update Note</h2>
-<form th:action="@{/note/list}" method="post" th:object="${note}">
+<form th:action="@{/note/edit}" method="post" th:object="${note}">
+    <input type="hidden" th:field="*{id}">
     <label>Title: <input type="text" th:field="*{title}"/></label><br>
     <label>Content: <input type="text" th:field="*{content}"/></label><br>
     <button type="submit">Update Note</button>
